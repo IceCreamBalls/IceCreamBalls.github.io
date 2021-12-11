@@ -1,260 +1,104 @@
-<!DOCTYPE HTML>
-<html class="no-js" lang="zh-CN">
-<head>
-    <!--[if lte IE 9]>
-<meta http-equiv="refresh" content="0;url=https://shuoit.net/warn.html">
-<![endif]-->
-<meta charset="utf-8">
-<meta name="renderer" content="webkit">
-<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
-<meta name="author" content="cheering">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta http-equiv="mobile-agent" content="format=html5; url=https://shuoit.net">
-<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+<!DOCTYPE html><html lang="[&quot;zh-cn&quot;,&quot;en&quot;,&quot;default&quot;]"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="cheering"><meta name="renderer" content="webkit"><meta name="copyright" content="cheering"><meta name="keywords" content="cheering的技术博客"><meta name="description" content="聚焦于互联网领域，探索前沿科技。说IT围绕软件研发、投资理财、读书旅行等，是一个关注技术与人文的IT博客。"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Mr.Cheering's Blog</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
 
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
 
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
 
-<link rel="shortcut icon" href="/images/favicon.png">
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
 
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
 
-<title>cheering的技术博客 - 关注技术与人文的IT博客</title>
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
 
-<meta name="keywords" content="技术博客,IT技术博客,软件研发,数据分析,数据爬取,健身运动,读书旅行">
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
 
-<meta name="description " content="聚焦于互联网领域，探索前沿科技。说IT围绕软件研发、投资理财、读书旅行等，是一个关注技术与人文的IT博客。">
-
-<!-- Jetpack Open Graph Tags -->
-<meta property="og:type" content="blog" />
-<meta property="og:title" content="cheering的技术博客 - 关注技术与人文的IT博客" />
-<meta property="og:description" content="聚焦于互联网领域，探索前沿科技。说IT围绕软件研发、投资理财、读书旅行等，是一个关注技术与人文的IT博客。" />
-<meta property="og:url" content="https://shuoit.net" />
-<meta property="og:site_name" content="cheering的技术博客" />
-
-<link rel="dns-prefetch" href="https://shuoit.net">
-<link rel="prefetch" href="https://shuoit.net">
-<link rel="prerender" href="https://shuoit.net">
-<link rel="stylesheet" href="/css/JSimple.min.css">
-    <script type="text/javascript">
-        (function() {
-            let jsi_config = {
-                rootUrl: 'https://shuoit.net/',
-                isPost: 'false',
-                buildingTime: '01/20/2018',
-                snsQRCode: '',
-                donateImg: '/images/donate-qr.png',
-                readMode: 'day',
-                localSearch: { dbPath: '' }
-            };
-            
-                jsi_config.localSearch = {
-                    dbPath: '/search.json',
-                    trigger: 'auto',
-                    topN: '1',
-                    unescape: 'false'
-                }
-            
-            window.jsi_config = jsi_config;
-        })()
-    </script>
-    
-<script src="/js/SimpleCore.min.js"></script>
-
-<meta name="generator" content="Hexo 5.4.0"></head>
-<body>
-<div id="nav">
-    <nav class="nav-menu">
-        <a class="site-name current" href="/" title="说">说</a>
-        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
-        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
-        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
-        <!-- custom single page of menus -->
-        
-        
-        <a href="/help" title="帮助">
-            <i class="fa fa-question-circle"></i>
-            <span>帮助</span>
-        </a>
-        
-    </nav>
-</div>
-
-<div class="nav-user">
-    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
-    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
-    
-</div>
-<div id="wrapper" class="clearfix">
-    <div id="body">
-        <div class="main" id="main">
-            <div id="cover">
-    <img class="cover-img" src="https://shuoit.net/images/cover-day.jpg" alt="cover-img" loading="lazy" />
-    <div class="cover-info">
-        
-        <h1 class="cover-siteName">说IT</h1>
-        <h3 class="cover-siteTitle">用代码摇滚这个世界</h3>
-        <p class="cover-siteDesc">一个关注技术与人文的IT博客</p>
-        <div class="cover-sns">
-            
-    &nbsp;&nbsp;<div class="btn btn-telegram">
-        <a href="https://t.me/kunyintang" target="_blank" title="telegram" ref="friend">
-            <i class="fa fa-telegram"></i>
-        </a>
-    </div>
-
-    &nbsp;&nbsp;<div class="btn btn-twitter">
-        <a href="https://twitter.com/tangkunyin" target="_blank" title="twitter" ref="friend">
-            <i class="fa fa-twitter"></i>
-        </a>
-    </div>
-
-    &nbsp;&nbsp;<div class="btn btn-github">
-        <a href="https://github.com/tangkunyin" target="_blank" title="github" ref="friend">
-            <i class="fa fa-github"></i>
-        </a>
-    </div>
-
-    &nbsp;&nbsp;<div class="btn btn-stack-overflow">
-        <a href="https://stackoverflow.com/users/6133063/tangkunyin" target="_blank" title="stack-overflow" ref="friend">
-            <i class="fa fa-stack-overflow"></i>
-        </a>
-    </div>
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
 
 
-        </div>
-    </div>
-</div>
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/cat.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">Cheering</div><div class="profile-signature">for me</div><div class="friends"><div>FRIENDS</div><span><a href="//github.com/Longlongyu" target="_black">friendA</a></span><span><a href="//github.com/" target="_black">friendB</a></span><span><a href="//github.com/" target="_black">friendC</a></span></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">Mr.Cheering's Blog</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1>Mr.Cheering's Blog</h1><h5>Welcome to my Blog!</h5><div class="intro-social"><a class="fa fa-envelope" href="mailto:1647513375@qq.com" title="email"></a><a class="fa fa-github" href="https://github.com/IceCreamBalls" target="_blank" title="github"></a><a class="fa fa-weibo" href="https://weibo.com/u/6513215145" target="_blank" title="weibo"></a></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><section id="recent-posts"><div class="recent-post-item"><div class="post-title"><a href="/%E6%8A%80%E6%9C%AF/undefined-undefined.html">Test</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2021-12-10T14:52:46.000Z">2021-12-10</time></div><div class="recent-post-content"></div><div class="recent-post-tags"><a class="post-tag fa fa-tag" href="javascript:void(0)" date-tags="test"> test</a></div><div class="read-more"><a class="more" href="/%E6%8A%80%E6%9C%AF/undefined-undefined.html#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/%E6%8A%80%E6%9C%AF/undefined-undefined.html">Hello World</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2021-12-10T12:39:12.596Z">2021-12-10</time></div><div class="recent-post-content">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;
 
-            <div class="page-title">
-    <ul>
-        <li class="active">
-            <a href="/" data-name="最近">最近</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/tech" data-name="技术">技术</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/huma" data-name="人文">人文</a>
-        </li>
-        
-        <li class="page-search">
-    <form id="search" class="search-form">
-        <input type="text"
-               readonly="readonly"
-               id="local-search-input-tip"
-               placeholder="读物检索~" />
-        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
-    </form>
-</li>
-
-    </ul>
-</div>
-<div class="main-inner">
-    <!-- default get newest -->
-    
-        
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://about.tangkunyin.com" target="_blank">
-                <strong>托码思</strong>
-            </a>
-            <em>·</em>2021-12-10
-            
-        </div>
-        <a class="post-title" href="/%E6%8A%80%E6%9C%AF/undefined-undefined.html" target="_blank" title="Test">Test</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://shuoit.net/tags/test/" target="_blank">test</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Test
-    </div>
-</article>
-
-
-
-    
-        
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://about.tangkunyin.com" target="_blank">
-                <strong>托码思</strong>
-            </a>
-            <em>·</em>2021-12-10
-            
-        </div>
-        <a class="post-title" href="/%E6%8A%80%E6%9C%AF/undefined-undefined.html" target="_blank" title="Hello World">Hello World</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Hello World
-    </div>
-</article>
-
-
-
-    
-</div>
-
-
-        </div><!-- end #main-->
-    </div><!-- end #body -->
-    <footer class="footer">
-    <div class="footer-inner" style="text-align: left">
-        <p>
-            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <!-- 自定义链接 -->
-            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <a href="/sitemap.xml" title="地图">地图</a>
-        </p>
-        <p>
-            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
-            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
-            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
-            ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">托码思</a>
-            ，Hosted by <a href="https://pages.github.com/" target="_blank" rel="nofollow">GitHub Pages</a>
-            
-        </p>
-    </div>
-</footer>
-</div>
-<!-- search pop -->
-<div class="popup search-popup local-search-popup">
-    <div class="local-search-header clearfix">
-        <span class="search-icon">
-            <i class="fa fa-search"></i>
-        </span>
-        <span class="popup-btn-close">
-            <i class="fa fa-times-circle"></i>
-        </span>
-        <div class="local-search-input-wrapper">
-            <input id="local-search-input"
-                   spellcheck="false"
-                   type="text"
-                   autocomplete="off"
-                   placeholder="请输入查询关键词"/>
-        </div>
-    </div>
-    <div id="local-search-result"></div>
-</div>
-<div class="fixed-btn">
-    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
-</div>
-
-
-</body>
-</html>
+More info: Writing
+Run server1$ hexo ser ...</div><div class="read-more"><a class="more" href="/%E6%8A%80%E6%9C%AF/undefined-undefined.html#more">ReadMore</a></div><hr></div></section><nav class="cxo-page-nav"><span class="page-number current">1</span></nav></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a target="_blank" rel="noopener" href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>
